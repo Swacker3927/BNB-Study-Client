@@ -1,0 +1,10 @@
+services:
+  service:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: bnb-client
+    container_name: bnb-client
+    restart: always
+    ports:
+      - "18080:3000"
