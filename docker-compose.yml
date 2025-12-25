@@ -1,0 +1,10 @@
+services:
+  service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: bnb_client
+    container_name: bnb_client
+    restart: always
+    ports:
+      - "18080:3000" # 외부포트 : 내부 앱실행 포트

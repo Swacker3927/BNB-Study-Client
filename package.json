@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Quasar Project",
   "productName": "Quasar App",
   "author": "Taewoo Lee <sai6321@naver.com>",
@@ -8,8 +8,9 @@
   "private": true,
   "scripts": {
     "test": "echo \"No test specified\" && exit 0",
-    "dev": "quasar dev",
-    "build": "quasar build",
+    "dev": "quasar dev -m ssr",
+    "build": "quasar build -m ssr",
+    "start": "node ./dist/ssr/index.js",
     "postinstall": "quasar prepare"
   },
   "dependencies": {
