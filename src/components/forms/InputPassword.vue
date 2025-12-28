@@ -1,7 +1,7 @@
 <template>
   <q-input v-model="model" :type="inputType">
     <template #append>
-      <q-btn :icon="icon" flat round @click="show = !show"></q-btn>
+      <q-btn :icon="icon" flat round @click="show = !show" tabindex="-1"></q-btn>
     </template>
   </q-input>
 </template>
