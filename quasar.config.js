@@ -2,6 +2,8 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file
 
 import { defineConfig } from '#q-app/wrappers';
+import dotenv from 'dotenv';
+dotenv.config();
 
 export default defineConfig((/* ctx */) => {
   return {
@@ -50,7 +52,9 @@ export default defineConfig((/* ctx */) => {
 
       // publicPath: '/',
       // analyze: true,
-      // env: {},
+      env: {
+        API_SERVER: process.env.API_SERVER,
+      },
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,
@@ -76,7 +80,7 @@ export default defineConfig((/* ctx */) => {
       config: {},
 
       // iconSet: 'material-icons', // Quasar icon set
-      // lang: 'en-US', // Quasar language pack
+      lang: 'ko-KR', // Quasar language pack
 
       // For special cases outside of where the auto-import strategy can have an impact
       // (like functional components as one of the examples),
