@@ -16,7 +16,7 @@ export default defineComponent({
   name: "MyTooltip",
   props: {
     offset: { type: Array, default: [10, 10] },
-    dir: { type: Boolean, default: "top" }, // bottom, left, right
+    dir: { type: String, default: "top" }, // bottom, left, right
   },
   data() {
     return {};
