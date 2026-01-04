@@ -5,7 +5,7 @@
     accept=".jpg,.png,.jpeg,.gif"
     clearable
   >
-    <MyTooltip v-if="img" dir="b">
+    <MyTooltip v-if="img" dir="bottom">
       <q-card>
         <img
           :src="img"
