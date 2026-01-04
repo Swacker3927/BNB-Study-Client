@@ -33,7 +33,7 @@ export default defineConfig((/* ctx */) => {
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
 
       'roboto-font', // optional, you are not bound to it
-      'material-icons', // optional, you are not bound to it
+      // 'material-icons', // optional, you are not bound to it
     ],
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#build
@@ -79,7 +79,7 @@ export default defineConfig((/* ctx */) => {
     framework: {
       config: {},
 
-      // iconSet: 'material-icons', // Quasar icon set
+      iconSet: 'mdi-v7', // Quasar icon set
       lang: 'ko-KR', // Quasar language pack
 
       // For special cases outside of where the auto-import strategy can have an impact
@@ -90,7 +90,9 @@ export default defineConfig((/* ctx */) => {
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: [
+        'Loading', 'Dialog',
+      ]
     },
 
     // animations: 'all', // --- includes all animations

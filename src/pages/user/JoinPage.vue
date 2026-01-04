@@ -1,6 +1,9 @@
 <template>
   <q-page padding>
-    <h2 class="text-center">회원가입</h2>
+    <h2 class="text-center q-my-md fw500">회원가입</h2>
+    <p class="text-right text-grey-8 q-mt-none">
+      <span style="color: red; font-size: 1.25em">*</span>는 필수 입력입니다.
+    </p>
     <q-form
       @submit="onSubmit"
       @reset="onReset"
@@ -8,6 +11,7 @@
       class="q-gutter-md"
     >
       <q-input
+        ref="inputEmail"
         v-model.trim="form.email"
         label="이메일"
         outlined
@@ -16,7 +20,10 @@
           (v) => !!v || '필수입력입니다.',
           (v) =>
             defineReg.email.test(v) || '올바른 이메일 형식으로 입력하세요.',
+          (v) => emailCheck.valid || '중복된 이메일 입니다.',
         ]"
+        :loading="emailCheck.loading"
+        class="required"
       />
       <q-input
         v-model.trim="form.name"
@@ -26,6 +33,7 @@
           (v) => !!v || '필수입력입니다.',
           (v) => v.length >= 2 || '이름은 2자이상 입력하세요.',
         ]"
+        class="required"
       />
       <InputPassword
         v-model.trim="form.password"
@@ -37,6 +45,7 @@
             defineReg.password.test(v) ||
             '대소문자,숫자,특수문자(@$!%*?&)포함 6자 이상 입력하세요.',
         ]"
+        class="required"
       />
       <InputPassword
         v-model.trim="checkPw"
@@ -45,6 +54,7 @@
         :rules="[
           (v) => v == form.password || '동일한 비밀번호를 한번더 입력하세요.',
         ]"
+        class="required"
       />
       <InputPhone
         v-model="form.tel"
@@ -55,6 +65,7 @@
           (v) =>
             defineReg.phone(v).test(v) || '올바른 전화번호 형식을 입력하세요.',
         ]"
+        class="required"
       ></InputPhone>
       <InputDate
         v-model="form.birth"
@@ -64,6 +75,7 @@
           (v) => !!v || '필수입력입니다.',
           (v) => defineReg.date.test(v) || 'YYYY-MM-DD 형식으로 입력하세요.',
         ]"
+        class="required"
       ></InputDate>
 
       <q-field
@@ -73,6 +85,7 @@
         stack-label
         dense
         :rules="[(v) => !!v || '필수입력입니다.']"
+        class="required"
       >
         <template v-slot:control>
           <q-btn-toggle
@@ -92,6 +105,7 @@
         stack-label
         dense
         :rules="[(v) => !!v || '필수입력입니다.']"
+        class="required"
       >
         <template v-slot:control>
           <q-btn-toggle
@@ -111,7 +125,8 @@
         <q-btn label="취소" type="reset" color="primary" flat class="q-ml-sm" />
       </div>
     </q-form>
-    <pre>{{ form }}</pre>
+    <q-btn label="폼테스트" @click="testForm"></q-btn>
+    <!-- <pre>{{ form }}</pre> -->
   </q-page>
 </template>
 
@@ -141,6 +156,11 @@ export default defineComponent({
         photo: null,
       },
       checkPw: "",
+      emailCheck: {
+        loading: false,
+        valid: false,
+        controller: null,
+      },
     };
   },
   computed: {
@@ -165,8 +185,22 @@ export default defineComponent({
         ref.$el.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     },
-    onSubmit() {
-      console.log(this.form);
+    async onSubmit() {
+      this.$q.loading.show();
+      const data = await userApi.join(this.form);
+      this.$q.loading.hide();
+      if (data) {
+        this.$q
+          .dialog({
+            title: "회원가입",
+            message: `${this.form.name}님 회원가입을 축하합니다.`,
+            persistent: true,
+          })
+          .onOk(() => {
+            // TODO: 로그인 페이지로 이동
+            this.$router.push({ name: "home" });
+          });
+      }
     },
     onReset() {
       this.form = {
@@ -180,13 +214,52 @@ export default defineComponent({
         photo: null,
       };
     },
+    testForm() {
+      this.form = {
+        email: "test@test.com",
+        name: "남기용",
+        password: "Abcd12!@",
+        tel: "01011111111",
+        birth: "1975-05-29",
+        sex: "M",
+        role: "User",
+        photo: null,
+      };
+      this.checkPw = "Abcd12!@";
+    },
     async changEmail(val) {
-      const data = await userApi.overlabCheck(val);
-      console.log("중복검사 결과",  data);
+      if (!defineReg.email.test(val)) {
+        // console.log("유효한 이메일이 아님", val);
+        return;
+      }
+      try {
+        this.emailCheck.loading = true;
+        this.emailCheck.valid = false;
+        this.$refs.inputEmail.validate();
+
+        // 먼저 요청한게 있다면 취소 한다.
+        if (this.emailCheck.controller) {
+          this.emailCheck.controller.abort();
+        }
+
+        this.emailCheck.controller = new AbortController();
+
+        const data = await userApi.overlabCheck(
+          val,
+          this.emailCheck.controller
+        );
+        this.emailCheck.valid = data; // true 사용가능
+        this.$refs.inputEmail.validate();
+        // console.log("중복검사 결과", data);
+      } catch (e) {
+        // console.log("요청이 취소됨");
+      } finally {
+        this.emailCheck.loading = false;
+      }
     },
   },
   created() {
-    this.changEmail = debounce(this.changEmail, 1000);
+    this.changEmail = debounce(this.changEmail, 250);
   },
   mounted() {
     console.log("ENV", process.env.API_SERVER);
