@@ -52,12 +52,12 @@
 
       <InputImage v-model="form.photo" label="사진" outlined></InputImage>
 
-      <div>
-        <q-btn label="회원가입" type="submit" color="primary" />
-        <q-btn label="취소" type="reset" color="primary" flat class="q-ml-sm" />
+      <div class="row justify-center">
+        <q-btn label="취소" type="reset" color="primary" flat />
+        <q-btn label="회원가입" type="submit" color="primary" class="q-ml-sm"  />
       </div>
     </q-form>
-    <q-btn label="폼테스트" @click="testForm"></q-btn>
+    <!-- <q-btn label="폼테스트" @click="testForm"></q-btn> -->
     <!-- <pre>{{ form }}</pre> -->
   </q-page>
 </template>
