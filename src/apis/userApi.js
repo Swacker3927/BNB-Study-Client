@@ -16,7 +16,13 @@ const join = async (payload) => {
   return data;
 }
 
+const login = async (payload) => {
+  const data = await api.post(`${URL}/login`, payload);
+  return data;
+}
 
 export default {
-  overlabCheck, join
+  overlabCheck,
+  join,
+  login,
 }

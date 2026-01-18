@@ -12,11 +12,12 @@
         />
 
         <q-toolbar-title>
-          <q-btn flat dense :to="{name:'home'}"> MY-Home </q-btn>
+          <q-btn flat dense :to="{ name: 'home' }"> MY-Home </q-btn>
         </q-toolbar-title>
 
         <div>
-          <q-btn flat dense :to="{name:'join'}"> 회원가입 </q-btn>
+          <q-btn flat dense :to="{ name: 'login' }"> 로그인 </q-btn>
+          <q-btn flat dense :to="{ name: 'join' }"> 회원가입 </q-btn>
         </div>
       </q-toolbar>
     </q-header>
