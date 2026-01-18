@@ -9,6 +9,7 @@
         </q-toolbar-title>
 
         <div>
+          <q-btn flat dense :to="{ name: 'login' }"> 로그인 </q-btn>
           <q-btn flat dense :to="{ name: 'join' }"> 회원가입 </q-btn>
         </div>
       </q-toolbar>

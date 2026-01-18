@@ -40,7 +40,7 @@ export default defineConfig((/* ctx */) => {
     build: {
       target: {
         browser: ['es2022', 'firefox115', 'chrome115', 'safari14'],
-        node: 'node20'
+        node: 'node22'
       },
 
       vueRouterMode: 'hash', // available values: 'hash', 'history'
@@ -91,7 +91,7 @@ export default defineConfig((/* ctx */) => {
 
       // Quasar plugins
       plugins: [
-        'Loading', 'Dialog',
+        'Loading', 'Dialog', 'Notify',
       ]
     },
 
