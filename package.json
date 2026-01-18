@@ -1,8 +1,8 @@
 {
   "name": "client",
-  "version": "0.0.2",
-  "description": "A Quasar Project",
-  "productName": "Quasar App",
+  "version": "0.0.3",
+  "description": "",
+  "productName": "Todo App",
   "author": "Taewoo Lee <sai6321@naver.com>",
   "type": "module",
   "private": true,
@@ -21,7 +21,7 @@
     "pinia": "^3.0.1",
     "quasar": "^2.16.0",
     "vue": "^3.5.22",
-    "vue-router": "^4.0.0"
+    "vue-router": "^4.6.4"
   },
   "devDependencies": {
     "@quasar/app-vite": "^2.1.0",
@@ -29,7 +29,7 @@
     "postcss": "^8.4.14"
   },
   "engines": {
-    "node": "^28 || ^26 || ^24 || ^22 || ^20",
+    "node": "^28 || ^26 || ^24 || ^22",
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1"
   }
