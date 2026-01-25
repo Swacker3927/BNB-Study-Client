@@ -36,6 +36,8 @@
 import { defineComponent } from "vue";
 import InputPassword from "src/components/forms/InputPassword.vue";
 import userApi from "src/apis/userApi";
+import useUser from "src/stores/useUser";
+import { mapActions } from "pinia";
 
 export default defineComponent({
   components: { InputPassword },
@@ -49,13 +51,20 @@ export default defineComponent({
     };
   },
   methods: {
+    ...mapActions(useUser, ["signInUser"]),
     async login() {
       // console.log(this.form);
       this.$q.loading.show();
       const data = await userApi.login(this.form);
-      if(data) {
-        console.log(data);
-        // TODO: pinia user정보 넣는거해야함
+      if (data) {
+        // console.log(data);
+        this.signInUser(data);
+        this.$router.push({ name: "home" });
+        this.$q.cookies.set("authToken", data.token);
+        this.$q.notify({
+          type: "positive",
+          message: `${data.user.name}님 로그인되었습니다.`,
+        });
       }
       this.$q.loading.hide();
     },
