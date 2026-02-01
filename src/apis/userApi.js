@@ -29,8 +29,8 @@ const signOutToken = () => {
   delete api.defaults.headers.common['Authorization'];
 }
 
-const auth = async(token)=> {
-  const user = await api.post(`${URL}/auth`, {token});
+const auth = async (token) => {
+  const user = await api.post(`${URL}/auth`, { token });
   return user;
 }
 
