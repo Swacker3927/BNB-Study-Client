@@ -22,13 +22,35 @@
           ></InputPassword>
         </q-card-section>
         <q-card-section class="q-pt-none row">
-          <q-btn label="회원가입" flat dense color="grey-8"></q-btn>
+          <q-btn
+            label="회원가입"
+            flat
+            dense
+            color="grey-8"
+            :to="{ name: 'join' }"
+          ></q-btn>
           <q-space></q-space>
           <q-btn label="로그인" type="submit" color="primary"></q-btn>
         </q-card-section>
       </q-card>
+      <div class="row full-width q-mt-md">
+        <q-btn
+          label="이메일 찾기"
+          type="button"
+          dense
+          flat
+          :to="{ name: 'find-email' }"
+        ></q-btn>
+        <q-space></q-space>
+        <q-btn
+          label="비밀번호 찾기"
+          type="button"
+          dense
+          flat
+          :to="{ name: 'find-pw' }"
+        ></q-btn>
+      </div>
     </q-form>
-    <q-btn label="비밀번호찾기" type="button" flat class="q-mt-md"></q-btn>
   </q-page>
 </template>
 
