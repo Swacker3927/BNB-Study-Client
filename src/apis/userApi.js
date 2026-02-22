@@ -21,8 +21,30 @@ const login = async (payload) => {
   return data;
 };
 
+const signInToken = (token) => {
+  api.defaults.headers.common['Authorization'] = 'bearer ' + token;
+};
+
+const signOutToken = () => {
+  delete api.defaults.headers.common['Authorization'];
+};
+
+const auth = async (token) => {
+  const user = await api.post(`${URL}/auth`, { token });
+  return user;
+};
+
+const findEmail = async (params) => {
+  const email = await api.get(`${URL}/find-email`, { params });
+  return email;
+};
+
 export default {
   overlabCheck,
   join,
-  login
+  login,
+  signInToken,
+  signOutToken,
+  auth,
+  findEmail
 };

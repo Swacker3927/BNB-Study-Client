@@ -14,7 +14,9 @@ export default defineConfig((/* ctx */) => {
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
     boot: [
-      'axios'
+      'axios',
+      { client: false, path: 'auth-ssr' },
+      { server: false, path: 'auth-csr' }
     ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#css
@@ -53,7 +55,7 @@ export default defineConfig((/* ctx */) => {
       // publicPath: '/',
       // analyze: true,
       env: {
-        API_SERVER: process.env.API_SERVER,
+        API_SERVER: process.env.API_SERVER
       },
       // rawDefine: {}
       // ignorePublicFolder: true,
@@ -91,7 +93,7 @@ export default defineConfig((/* ctx */) => {
 
       // Quasar plugins
       plugins: [
-        'Loading', 'Dialog', 'Notify',
+        'Loading', 'Dialog', 'Notify', 'Cookies'
       ]
     },
 

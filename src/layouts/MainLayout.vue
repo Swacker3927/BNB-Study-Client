@@ -8,10 +8,7 @@
           <q-btn flat dense :to="{ name: 'home' }"> MY-Home </q-btn>
         </q-toolbar-title>
 
-        <div>
-          <q-btn flat dense :to="{ name: 'login' }"> 로그인 </q-btn>
-          <q-btn flat dense :to="{ name: 'join' }"> 회원가입 </q-btn>
-        </div>
+        <SiteUser></SiteUser>
       </q-toolbar>
     </q-header>
 
@@ -25,12 +22,13 @@
 
 <script>
 import { defineComponent, ref } from "vue";
+import { mapActions } from "pinia";
+import useUser from "src/stores/useUser";
+import SiteUser from "src/components/layout/SiteUser.vue";
 
 export default defineComponent({
+  components: { SiteUser },
   name: "MainLayout",
-
-  components: {},
-
   data() {
     return {
       leftDrawerOpen: false,

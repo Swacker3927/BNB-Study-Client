@@ -22,13 +22,35 @@
           ></InputPassword>
         </q-card-section>
         <q-card-section class="q-pt-none row">
-          <q-btn label="회원가입" flat dense color="grey-8"></q-btn>
+          <q-btn
+            label="회원가입"
+            flat
+            dense
+            color="grey-8"
+            :to="{ name: 'join' }"
+          ></q-btn>
           <q-space></q-space>
           <q-btn label="로그인" type="submit" color="primary"></q-btn>
         </q-card-section>
       </q-card>
+      <div class="row full-width q-mt-md">
+        <q-btn
+          label="이메일 찾기"
+          type="button"
+          dense
+          flat
+          :to="{ name: 'find-email' }"
+        ></q-btn>
+        <q-space></q-space>
+        <q-btn
+          label="비밀번호 찾기"
+          type="button"
+          dense
+          flat
+          :to="{ name: 'find-pw' }"
+        ></q-btn>
+      </div>
     </q-form>
-    <q-btn label="비밀번호찾기" type="button" flat class="q-mt-md"></q-btn>
   </q-page>
 </template>
 
@@ -36,6 +58,8 @@
 import { defineComponent } from "vue";
 import InputPassword from "src/components/forms/InputPassword.vue";
 import userApi from "src/apis/userApi";
+import useUser from "src/stores/useUser";
+import { mapActions } from "pinia";
 
 export default defineComponent({
   components: { InputPassword },
@@ -49,13 +73,20 @@ export default defineComponent({
     };
   },
   methods: {
+    ...mapActions(useUser, ["signInUser"]),
     async login() {
       // console.log(this.form);
       this.$q.loading.show();
       const data = await userApi.login(this.form);
-      if(data) {
-        console.log(data);
-        // TODO: pinia user정보 넣는거해야함
+      if (data) {
+        // console.log(data);
+        this.signInUser(data);
+        this.$router.push({ name: "home" });
+        this.$q.cookies.set("authToken", data.token);
+        this.$q.notify({
+          type: "positive",
+          message: `${data.user.name}님 로그인되었습니다.`,
+        });
       }
       this.$q.loading.hide();
     },
