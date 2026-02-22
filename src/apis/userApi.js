@@ -34,6 +34,11 @@ const auth = async (token) => {
   return user;
 }
 
+const findEmail = async (params) => {
+  const email = await api.get(`${URL}/find-email`, { params });
+  return email
+}
+
 export default {
   overlabCheck,
   join,
@@ -41,4 +46,5 @@ export default {
   signInToken,
   signOutToken,
   auth,
+  findEmail,
 }
