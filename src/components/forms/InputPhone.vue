@@ -9,7 +9,7 @@ export default defineComponent({
   name: "InputPhone",
   emits: ["update:model-value"],
   props: {
-    modelValue: { type: String, required: true },
+    modelValue: { type: String, required: true }
   },
   data() {
     return {};
@@ -21,7 +21,7 @@ export default defineComponent({
       },
       get() {
         return this.modelValue;
-      },
+      }
     },
     mask() {
       const val = this.modelValue.replace(/[^\d]/g, "");
@@ -41,8 +41,8 @@ export default defineComponent({
         }
       }
       return mask;
-    },
-  },
+    }
+  }
 });
 </script>
 

@@ -21,9 +21,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
-import { mapActions } from "pinia";
-import useUser from "src/stores/useUser";
+import { defineComponent } from "vue";
 import SiteUser from "src/components/layout/SiteUser.vue";
 
 export default defineComponent({
@@ -31,14 +29,14 @@ export default defineComponent({
   name: "MainLayout",
   data() {
     return {
-      leftDrawerOpen: false,
+      leftDrawerOpen: false
     };
   },
 
   methods: {
     toggleLeftDrawer() {
       this.leftDrawerOpen = !this.leftDrawerOpen;
-    },
-  },
+    }
+  }
 });
 </script>

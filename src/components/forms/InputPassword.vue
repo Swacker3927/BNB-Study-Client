@@ -13,11 +13,11 @@ export default defineComponent({
   name: "InputPassword",
   emits: ["update:model-value"],
   props: {
-    modelValue: { type: String, required: true },
+    modelValue: { type: String, required: true }
   },
   data() {
     return {
-      show: false,
+      show: false
     };
   },
   computed: {
@@ -27,16 +27,16 @@ export default defineComponent({
       },
       get() {
         return this.modelValue;
-      },
+      }
     },
     icon() {
       return this.show ? 'mdi-eye-off-outline' : 'mdi-eye-outline';
     },
     inputType() {
       return this.show ? "text" : "password";
-    },
+    }
   },
-  methods: {},
+  methods: {}
 });
 </script>
 

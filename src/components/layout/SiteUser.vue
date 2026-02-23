@@ -15,24 +15,12 @@
           안녕하세요. {{ user.name }}
         </q-card-section>
         <q-card-actions>
-          <q-btn
-            @click="logout"
-            class="full-width"
-            color="grey-4"
-            text-color="black"
-            >로그아웃</q-btn
-          >
+          <q-btn @click="logout" class="full-width" color="grey-4" text-color="black">로그아웃</q-btn>
         </q-card-actions>
       </q-card>
     </q-menu>
   </q-avatar>
-  <q-avatar
-    v-else
-    color="secondary"
-    text-color="white"
-    icon="mdi-account"
-    style="cursor: pointer"
-  >
+  <q-avatar v-else color="secondary" text-color="white" icon="mdi-account" style="cursor: pointer">
     <q-menu>
       <q-list style="min-width: 100px" separator>
         <q-item clickable :to="{ name: 'login' }">
@@ -61,7 +49,7 @@ export default defineComponent({
       if (this.isLogin) {
         return this.user.name[0];
       }
-    },
+    }
   },
   methods: {
     ...mapActions(useUser, ["signOutUser"]),
@@ -74,8 +62,8 @@ export default defineComponent({
       if (this.$route.name != "home") {
         this.$router.push({ name: "home" });
       }
-    },
-  },
+    }
+  }
 });
 </script>
 
