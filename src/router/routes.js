@@ -8,6 +8,7 @@ const routes = [
       { name: 'login', path: 'login', component: () => import('pages/user/LoginPage.vue') },
       { name: 'find-email', path: 'find-email', component: () => import('pages/user/FindEmailPage.vue') },
       { name: 'find-pw', path: 'find-pw', component: () => import('pages/user/FindPwPage.vue') },
+      { name: 'pw-reset', path: 'pw-reset', component: () => import('pages/user/PwResetPage.vue') },
     ]
   },
   {
