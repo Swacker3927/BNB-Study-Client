@@ -44,6 +44,11 @@ const resetPw = async(payload) => {
   return data;
 }
 
+const fildPw = async(params) => {
+  const data = await api.get(`${URL}/find-pw`, {params});
+  return data;
+}
+
 export default {
   overlabCheck,
   join,
@@ -53,4 +58,5 @@ export default {
   auth,
   findEmail,
   resetPw,
+  fildPw,
 }
