@@ -36,7 +36,7 @@
             dense
             :rules="[
               (v) =>
-                v == form.password || '동일한 비밀번호를 한번더 입력하세요.',
+                v == form.password || '동일한 비밀번호를 한번 더 입력하세요.',
             ]"
             class="required"
           />
