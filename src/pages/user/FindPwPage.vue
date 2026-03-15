@@ -38,7 +38,7 @@ export default defineComponent({
   methods: {
     async findPw() {
       this.$q.loading.show();
-      const data = await userApi.fildPw(this.form);
+      const data = await userApi.findPw(this.form);
       this.$q.loading.hide();
       if (data) {
         this.$q
