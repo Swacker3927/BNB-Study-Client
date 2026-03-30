@@ -18,7 +18,7 @@
         outlined
         :rules="[
           (v) => !!v || '필수입력입니다.',
-          (v) => v.length >= 2 || '이름은 2자이상 입력하세요.',
+          (v) => v.length >= 2 || '이름은 2자 이상 입력하세요.',
         ]"
         class="required"
       />
