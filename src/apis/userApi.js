@@ -44,8 +44,15 @@ const resetPw = async (payload) => {
   return data;
 };
 
-const findPw = async (params) => {
+const fildPw = async (params) => {
   const data = await api.get(`${URL}/find-pw`, { params });
+  return data;
+};
+
+const modify = async (email, payload) => {
+  const formData = createFormData(payload);
+  const data = await api.put(`${URL}/${email}`, formData);
+  console.log('mod', data);
   return data;
 };
 
@@ -58,5 +65,6 @@ export default {
   auth,
   findEmail,
   resetPw,
-  findPw
+  fildPw,
+  modify
 };

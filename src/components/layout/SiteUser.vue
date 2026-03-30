@@ -14,8 +14,22 @@
         <q-card-section class="text-center">
           안녕하세요. {{ user.name }}
         </q-card-section>
+        <q-separator></q-separator>
         <q-card-actions>
-          <q-btn @click="logout" class="full-width" color="grey-4" text-color="black">로그아웃</q-btn>
+          <q-list style="width: 100%" separator>
+            <q-item v-for="menu in userMenu" :key="menu.label" clickable :to="menu.to">
+              <q-item-section avatar>
+                <q-icon :name="menu.icon"></q-icon>
+              </q-item-section>
+              <q-item-section>{{ menu.label }}</q-item-section>
+            </q-item>
+            <q-item clickable @click="logout">
+              <q-item-section avatar>
+                <q-icon name="mdi-account-off-outline"></q-icon>
+              </q-item-section>
+              <q-item-section>로그아웃</q-item-section>
+            </q-item>
+          </q-list>
         </q-card-actions>
       </q-card>
     </q-menu>
@@ -38,6 +52,7 @@
 import { defineComponent } from "vue";
 import { mapState, mapActions } from "pinia";
 import useUser from "src/stores/useUser";
+
 export default defineComponent({
   name: "SiteUser",
   data() {
@@ -49,6 +64,23 @@ export default defineComponent({
       if (this.isLogin) {
         return this.user.name[0];
       }
+    },
+    userMenu() {
+      const arr = [];
+      arr.push({
+        label: "회원정보 수정",
+        to: { name: "user-modify" },
+        icon: "mdi-account-edit-outline"
+      });
+
+      // TODO: 사용자 권한별 메뉴 추가해야됨
+
+      arr.push({
+        label: "회원정보 탈퇴",
+        to: { name: "user-leave" },
+        icon: "mdi-account-remove-outline"
+      });
+      return arr;
     }
   },
   methods: {

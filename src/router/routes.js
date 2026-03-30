@@ -12,6 +12,15 @@ const routes = [
     ]
   },
   {
+    path: '/user',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { name: 'user-modify', path: 'modify', component: () => import('pages/user/ModifyPage.vue') },
+      { name: 'user-leave', path: 'leave', component: () => import('pages/user/LeavePage.vue') },
+
+    ]
+  },
+  {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue')
   }

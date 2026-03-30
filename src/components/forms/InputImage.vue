@@ -22,11 +22,12 @@ export default defineComponent({
   emits: ["update:model-value"],
   props: {
     modelValue: { type: [Object, null], required: true },
-    label: { type: String, default: "이미지" }
+    label: { type: String, default: "이미지" },
+    source: { type: String, default: "" }
   },
   data() {
     return {
-      img: ""
+      img: this.source
     };
   },
   computed: {
@@ -49,7 +50,7 @@ export default defineComponent({
       if (this.model) {
         this.img = await imageToBase64(this.model);
       } else {
-        this.img = "";
+        this.img = this.source;
       }
     }
   }
