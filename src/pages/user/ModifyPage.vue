@@ -36,7 +36,7 @@
         label="비밀번호 확인"
         outlined
         :rules="[
-          (v) => v == form.password || '동일한 비밀번호를 한번더 입력하세요.',
+          (v) => v == form.password || '동일한 비밀번호를 한번 더 입력하세요.',
         ]"
         :class="{ required: !!form.password }"
       />
