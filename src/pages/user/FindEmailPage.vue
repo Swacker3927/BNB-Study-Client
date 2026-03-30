@@ -2,7 +2,7 @@
   <q-page padding class="column flex-center">
     <h2 class="q-my-sm">이메일 찾기</h2>
     <p v-if="email" class="text-grey-8">아래에 이메일로 로그인 하세요.</p>
-    <p v-else class="text-grey-8">회원가입시 입력한 이름과 전화번호를 입력하세요.</p>
+    <p v-else class="text-grey-8">회원가입 시, 입력한 이름과 전화번호를 입력하세요.</p>
     <q-form @submit.stop="onSubmit">
       <q-card v-if="email">
         <q-card-section>
@@ -11,56 +11,27 @@
       </q-card>
       <q-card v-else>
         <q-card-section>
-          <q-input
-            v-model.trim="form.name"
-            label="이름"
-            outlined
-            :rules="[
-              (v) => !!v || '필수입력입니다.',
-              (v) => v.length >= 2 || '이름은 2자이상 입력하세요.',
-            ]"
-            class="required"
-          />
+          <q-input v-model.trim="form.name" label="이름" outlined :rules="[
+            (v) => !!v || '필수입력입니다.',
+            (v) => v.length >= 2 || '이름은 2자 이상 입력하세요.',
+          ]" class="required" />
         </q-card-section>
         <q-card-section class="q-pt-none">
-          <InputPhone
-            v-model="form.tel"
-            label="전화번호"
-            outlined
-            :rules="[
-              (v) => !!v || '필수입력입니다.',
-              (v) =>
-                defineReg.phone(v).test(v) ||
-                '올바른 전화번호 형식을 입력하세요.',
-            ]"
-            class="required"
-          ></InputPhone>
+          <InputPhone v-model="form.tel" label="전화번호" outlined :rules="[
+            (v) => !!v || '필수입력입니다.',
+            (v) =>
+              defineReg.phone(v).test(v) ||
+              '올바른 전화번호 형식을 입력하세요.',
+          ]" class="required"></InputPhone>
         </q-card-section>
         <q-card-section class="q-pt-none">
-          <q-btn
-            label="이메일 찾기"
-            type="submit"
-            color="primary"
-            class="full-width"
-          ></q-btn>
+          <q-btn label="이메일 찾기" type="submit" color="primary" class="full-width"></q-btn>
         </q-card-section>
       </q-card>
       <div class="row full-width q-mt-md">
-        <q-btn
-          label="로그인"
-          type="button"
-          dense
-          flat
-          :to="{ name: 'login' }"
-        ></q-btn>
+        <q-btn label="로그인" type="button" dense flat :to="{ name: 'login' }"></q-btn>
         <q-space></q-space>
-        <q-btn
-          label="비밀번호 찾기"
-          type="button"
-          dense
-          flat
-          :to="{ name: 'find-pw' }"
-        ></q-btn>
+        <q-btn label="비밀번호 찾기" type="button" dense flat :to="{ name: 'find-pw' }"></q-btn>
       </div>
     </q-form>
   </q-page>
@@ -79,13 +50,13 @@ export default defineComponent({
     return {
       form: {
         name: "",
-        tel: "",
+        tel: ""
       },
-      email: "test@test.com",
+      email: "test@test.com"
     };
   },
   computed: {
-    defineReg: () => defineReg,
+    defineReg: () => defineReg
   },
   methods: {
     async onSubmit() {
@@ -95,8 +66,8 @@ export default defineComponent({
       if (email) {
         this.email = email;
       }
-    },
-  },
+    }
+  }
 });
 </script>
 

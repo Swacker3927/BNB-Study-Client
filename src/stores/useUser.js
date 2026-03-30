@@ -28,6 +28,9 @@ export default defineStore('useUser', {
       Cookies.remove('authToken');
       userApi.signOutToken();
       return name;
+    },
+    modifyUser(newUser) {
+      this.user = {...this.user, ...newUser};
     }
   },
 });

@@ -5,7 +5,9 @@ export default (data) => {
     if (value instanceof File) {
       formData.append(key, value, value.name);
     } else {
-      formData.append(key, value);
+      if(value) {
+        formData.append(key, value);
+      }
     }
   }
   return formData;

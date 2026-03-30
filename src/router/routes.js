@@ -8,6 +8,16 @@ const routes = [
       { name: 'login', path: 'login', component: () => import('pages/user/LoginPage.vue') },
       { name: 'find-email', path: 'find-email', component: () => import('pages/user/FindEmailPage.vue') },
       { name: 'find-pw', path: 'find-pw', component: () => import('pages/user/FindPwPage.vue') },
+      { name: 'pw-reset', path: 'pw-reset', component: () => import('pages/user/PwResetPage.vue') },
+    ]
+  },
+  {
+    path: '/user',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { name: 'user-modify', path: 'modify', component: () => import('pages/user/ModifyPage.vue') },
+      { name: 'user-leave', path: 'leave', component: () => import('pages/user/LeavePage.vue') },
+
     ]
   },
   {

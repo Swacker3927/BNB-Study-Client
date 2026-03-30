@@ -1,10 +1,5 @@
 <template>
-  <q-tooltip
-    v-bind="bindAttr"
-    :offset="offset"
-    transition-show="rotate"
-    transition-hide="rotate"
-  >
+  <q-tooltip v-bind="bindAttr" :offset="offset" transition-show="rotate" transition-hide="rotate">
     <slot></slot>
   </q-tooltip>
 </template>
@@ -16,7 +11,7 @@ export default defineComponent({
   name: "MyTooltip",
   props: {
     offset: { type: Array, default: [10, 10] },
-    dir: { type: String, default: "top" }, // bottom, left, right
+    dir: { type: String, default: "top" } // bottom, left, right
   },
   data() {
     return {};
@@ -36,8 +31,8 @@ export default defineComponent({
         default:
           return { anchor: "top middle", self: "bottom middle" };
       }
-    },
-  },
+    }
+  }
 });
 </script>
 
