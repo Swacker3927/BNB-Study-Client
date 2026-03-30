@@ -118,7 +118,7 @@ import { mapActions, mapState } from "pinia";
 
 export default defineComponent({
   components: { InputPassword, InputPhone, InputDate, InputImage },
-  name: "JoinPage",
+  name: "ModifyPage",
   data() {
     return {
       email: "",
