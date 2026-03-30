@@ -12,7 +12,7 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "InputPassword",
   emits: ["update:model-value"],
-  expose: ["resetValidation"], // 기본 가시성 private 선언안하면 options API에서는 public, compositon API에서는 private
+  expose: ["resetValidation"], // 기본 가시성 private 선언안하면 options API에서는 public, composition API에서는 private
   props: {
     modelValue: { type: String, required: true }
   },
