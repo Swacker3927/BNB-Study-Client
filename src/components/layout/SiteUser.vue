@@ -74,6 +74,15 @@ export default defineComponent({
       });
 
       // TODO: 사용자 권한별 메뉴 추가해야됨
+      switch (this.user.role) {
+        case "Admin":
+          arr.push({
+            label: "관리자",
+            to: { name: "adm-dashboard" },
+            icon: "mdi-cog",
+          });
+          break;
+      }
 
       arr.push({
         label: "회원정보 탈퇴",

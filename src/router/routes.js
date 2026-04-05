@@ -21,6 +21,14 @@ const routes = [
     ]
   },
   {
+    path: '/admin',
+    component: () => import('layouts/AdminLayout.vue'),
+    children: [
+      { name: 'adm-dashboard', path: 'dashboard', component: () => import('pages/admin/DashboardPage.vue') },
+      { name: 'adm-user', path: 'user', component: () => import('pages/admin/AdmUserPage.vue') },
+    ]
+  },
+  {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue')
   }
