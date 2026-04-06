@@ -4,51 +4,22 @@
     <q-form @submit.stop="login">
       <q-card>
         <q-card-section>
-          <q-input
-            label="이메일"
-            v-model="form.email"
-            outlined
-            dense
-            :rules="[(v) => !!v || '필수 입력입니다.']"
-          ></q-input>
+          <q-input label="이메일" v-model="form.email" outlined dense :rules="[(v) => !!v || '필수 입력입니다.']"></q-input>
         </q-card-section>
         <q-card-section class="q-pt-none">
-          <InputPassword
-            label="비밀번호"
-            v-model="form.password"
-            outlined
-            dense
-            :rules="[(v) => !!v || '필수 입력입니다.']"
-          ></InputPassword>
+          <InputPassword label="비밀번호" v-model="form.password" outlined dense :rules="[(v) => !!v || '필수 입력입니다.']">
+          </InputPassword>
         </q-card-section>
         <q-card-section class="q-pt-none row">
-          <q-btn
-            label="회원가입"
-            flat
-            dense
-            color="grey-8"
-            :to="{ name: 'join' }"
-          ></q-btn>
+          <q-btn label="회원가입" flat dense color="grey-8" :to="{ name: 'join' }"></q-btn>
           <q-space></q-space>
           <q-btn label="로그인" type="submit" color="primary"></q-btn>
         </q-card-section>
       </q-card>
       <div class="row full-width q-mt-md">
-        <q-btn
-          label="이메일 찾기"
-          type="button"
-          dense
-          flat
-          :to="{ name: 'find-email' }"
-        ></q-btn>
+        <q-btn label="이메일 찾기" type="button" dense flat :to="{ name: 'find-email' }"></q-btn>
         <q-space></q-space>
-        <q-btn
-          label="비밀번호 찾기"
-          type="button"
-          dense
-          flat
-          :to="{ name: 'find-pw' }"
-        ></q-btn>
+        <q-btn label="비밀번호 찾기" type="button" dense flat :to="{ name: 'find-pw' }"></q-btn>
       </div>
     </q-form>
   </q-page>
@@ -68,8 +39,8 @@ export default defineComponent({
     return {
       form: {
         email: "",
-        password: "",
-      },
+        password: ""
+      }
     };
   },
   methods: {
@@ -85,12 +56,12 @@ export default defineComponent({
         this.$q.cookies.set("authToken", data.token);
         this.$q.notify({
           type: "positive",
-          message: `${data.user.name}님 로그인되었습니다.`,
+          message: `${data.user.name}님 로그인되었습니다.`
         });
       }
       this.$q.loading.hide();
-    },
-  },
+    }
+  }
 });
 </script>
 

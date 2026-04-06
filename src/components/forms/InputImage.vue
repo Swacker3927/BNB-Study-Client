@@ -1,17 +1,8 @@
 <template>
-  <q-file
-    :label="label"
-    v-model="model"
-    accept=".jpg,.png,.jpeg,.gif"
-    clearable
-  >
+  <q-file :label="label" v-model="model" accept=".jpg,.png,.jpeg,.gif" clearable>
     <MyTooltip v-if="img" dir="bottom">
       <q-card>
-        <img
-          :src="img"
-          :alt="`${label} 미리보기`"
-          style="max-width: 200px; max-height: 200px"
-        />
+        <img :src="img" :alt="`${label} 미리보기`" style="max-width: 200px; max-height: 200px" />
         <q-card-section class="text-black text-center q-pa-sm">
           {{ label }} 미리보기
         </q-card-section>
@@ -32,10 +23,11 @@ export default defineComponent({
   props: {
     modelValue: { type: [Object, null], required: true },
     label: { type: String, default: "이미지" },
+    source: { type: String, default: "" }
   },
   data() {
     return {
-      img: "",
+      img: this.source
     };
   },
   computed: {
@@ -45,23 +37,23 @@ export default defineComponent({
       },
       get() {
         return this.modelValue;
-      },
-    },
+      }
+    }
   },
   watch: {
     model() {
       this.setImage();
-    },
+    }
   },
   methods: {
     async setImage() {
       if (this.model) {
         this.img = await imageToBase64(this.model);
       } else {
-        this.img = "";
+        this.img = this.source;
       }
-    },
-  },
+    }
+  }
 });
 </script>
 

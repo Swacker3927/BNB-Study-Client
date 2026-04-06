@@ -13,7 +13,7 @@
       ]" :loading="emailCheck.loading" class="required" />
       <q-input v-model.trim="form.name" label="이름" outlined :rules="[
         (v) => !!v || '필수입력입니다.',
-        (v) => v.length >= 2 || '이름은 2자이상 입력하세요.',
+        (v) => v.length >= 2 || '이름은 2자 이상 입력하세요.',
       ]" class="required" />
       <InputPassword v-model.trim="form.password" label="비밀번호" outlined :rules="[
         (v) => !!v || '필수입력입니다.',
@@ -22,7 +22,7 @@
           '대소문자,숫자,특수문자(@$!%*?&)포함 6자 이상 입력하세요.',
       ]" class="required" />
       <InputPassword v-model.trim="checkPw" label="비밀번호 확인" outlined :rules="[
-        (v) => v == form.password || '동일한 비밀번호를 한번더 입력하세요.',
+        (v) => v == form.password || '동일한 비밀번호를 한번 더 입력하세요.',
       ]" class="required" />
       <InputPhone v-model="form.tel" label="전화번호" outlined :rules="[
         (v) => !!v || '필수입력입니다.',
@@ -54,11 +54,9 @@
 
       <div class="row justify-center">
         <q-btn label="취소" type="reset" color="primary" flat />
-        <q-btn label="회원가입" type="submit" color="primary" class="q-ml-sm"  />
+        <q-btn label="회원가입" type="submit" color="primary" class="q-ml-sm" />
       </div>
     </q-form>
-    <!-- <q-btn label="폼테스트" @click="testForm"></q-btn> -->
-    <!-- <pre>{{ form }}</pre> -->
   </q-page>
 </template>
 
@@ -85,14 +83,14 @@ export default defineComponent({
         birth: "",
         sex: "",
         role: "",
-        photo: null,
+        photo: null
       },
       checkPw: "",
       emailCheck: {
         loading: false,
         valid: false,
-        controller: null,
-      },
+        controller: null
+      }
     };
   },
   computed: {
@@ -100,16 +98,16 @@ export default defineComponent({
     sexOptions() {
       return [
         { label: "남성", value: "M" },
-        { label: "여성", value: "F" },
+        { label: "여성", value: "F" }
       ];
     },
     roleOptions() {
       return [
         { label: "일반 사용자", value: "User" },
         { label: "사업자", value: "Company" },
-        { label: "셀러", value: "Seller" },
+        { label: "셀러", value: "Seller" }
       ];
-    },
+    }
   },
   methods: {
     onValidError(ref) {
@@ -126,7 +124,7 @@ export default defineComponent({
           .dialog({
             title: "회원가입",
             message: `${this.form.name}님 회원가입을 축하합니다.`,
-            persistent: true,
+            persistent: true
           })
           .onOk(() => {
             // TODO: 로그인 페이지로 이동
@@ -143,7 +141,7 @@ export default defineComponent({
         birth: "",
         sex: "",
         role: "",
-        photo: null,
+        photo: null
       };
     },
     testForm() {
@@ -155,7 +153,7 @@ export default defineComponent({
         birth: "1990-11-18",
         sex: "M",
         role: "User",
-        photo: null,
+        photo: null
       };
       this.checkPw = "Abcd12!@";
     },
@@ -188,14 +186,14 @@ export default defineComponent({
       } finally {
         this.emailCheck.loading = false;
       }
-    },
+    }
   },
   created() {
     this.changEmail = debounce(this.changEmail, 250);
   },
   mounted() {
     console.log("ENV", process.env.API_SERVER);
-  },
+  }
 });
 </script>
 
