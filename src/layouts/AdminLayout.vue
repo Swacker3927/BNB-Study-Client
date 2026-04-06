@@ -46,7 +46,7 @@ import SiteUser from "src/components/layout/SiteUser.vue";
 
 export default defineComponent({
   components: { SiteUser },
-  name: "MainLayout",
+  name: "AdminLayout",
   data() {
     return {
       leftDrawerOpen: false,
