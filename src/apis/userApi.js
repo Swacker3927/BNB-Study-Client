@@ -56,6 +56,10 @@ const modify = async (email, payload) => {
   return data;
 };
 
+const photoUrl = (url) => {
+  return url ? process.env.API_SERVER + url : null;
+};
+
 export default {
   overlabCheck,
   join,
@@ -66,5 +70,6 @@ export default {
   findEmail,
   resetPw,
   fildPw,
-  modify
+  modify,
+  photoUrl
 };
